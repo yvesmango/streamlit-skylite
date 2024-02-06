@@ -5,7 +5,6 @@ import pandas_gbq
 
 st.set_page_config(page_title="Streamlit: Skylite Travel Tracker", layout="wide")
 
-with st.title:
     
 
 
