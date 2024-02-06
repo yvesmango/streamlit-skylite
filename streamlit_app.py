@@ -12,6 +12,7 @@ st.set_page_config(page_title="Streamlit: Skylite Travel Tracker", layout="wide"
 # Create API client credentials.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
 
+@st.cache_data(ttl=600)
 # Perform query and read data into DataFrame using pandas.read_gbq().
 def run_query(query):
     df = pd.read_gbq(query, credentials=credentials, project_id="data-sciencey-things")
