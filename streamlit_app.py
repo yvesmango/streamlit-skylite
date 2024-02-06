@@ -44,10 +44,13 @@ def run_query(query):
     rows = [dict(row) for row in rows_raw]
     return rows
 
-rows = run_query("SELECT * FROM `data-sciencey-things.skylite_travel.flights LIMIT 10`")
+query_string = "SELECT * FROM `data-sciencey-things.skylite_travel.flights LIMIT 10`"
 
+df = (
+    client.query(query_string)
+    .result()
+    .to_dataframe()
+)
 
-# Print results.
-st.write("Some wise words from Shakespeare:")
-for row in rows:
-    st.write("✍️ " + row['airline'])
+print(df.head)
+
