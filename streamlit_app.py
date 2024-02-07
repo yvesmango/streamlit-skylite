@@ -8,9 +8,6 @@ st.set_page_config(page_title="Streamlit: Skylite Travel Tracker", layout="wide"
 
     
 
-
-
-
 #Create API client.
 credentials = service_account.Credentials.from_service_account_info(
      st.secrets["gcp_service_account"]
@@ -27,12 +24,12 @@ def run_query(query):
      rows = [dict(row) for row in rows_raw]
      return rows
 
-query_string = "SELECT * FROM data-sciencey-things.skylite_travel.flights LIMIT 20"
+query_string = "SELECT * FROM data-sciencey-things.skylite_travel.flights"
 
 df = (
      client.query(query_string).result().to_dataframe()
  )
 
 st.write("# Yves TRAVEL APP")
-st.write(df.head(10))
+st.write(df.sort_values(by=['snippet_publishedAt'], ascending=False).head(5))
 
