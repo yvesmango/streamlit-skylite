@@ -7,10 +7,10 @@ from google.cloud import bigquery
 import pandas_gbq
 import pandas as pd 
 
+
+
+
 st.set_page_config(page_title="Streamlit: Skylite Travel Tracker", layout="wide")
-
-
-
     
 
 #Create API client.
