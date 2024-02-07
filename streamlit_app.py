@@ -53,6 +53,7 @@ with col1:
      st.write("# Yves TRAVEL APP") 
 
 with col2:
+     st.write("no lottie")
      #st.lottie(airplane, height=200, width=200)
 
 
