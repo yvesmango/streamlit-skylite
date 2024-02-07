@@ -1,4 +1,5 @@
 import streamlit as st
+import google.auth
 from google.oauth2 import service_account
 from google.cloud import bigquery
 import pandas_gbq
