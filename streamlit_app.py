@@ -1,6 +1,6 @@
 import json
 import streamlit as st
-#from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie
 import google.auth
 from google.oauth2 import service_account
 from google.cloud import bigquery
@@ -52,8 +52,8 @@ col1, col2, col3 = st.columns((3,1,1))
 with col1:
      st.write("# Yves TRAVEL APP") 
 
-# with col2:
-#      st.lottie(airplane, height=200, width=200)
+with col2:
+     st.lottie(airplane, height=200, width=200)
 
 
 st.write("#### Latest data files")
