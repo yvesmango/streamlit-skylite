@@ -27,12 +27,12 @@ def run_query(query):
      rows = [dict(row) for row in rows_raw]
      return rows
 
-query_string = "SELECT * FROM data-sciencey-things.skylite_travel.flights LIMIT 10"
+query_string = "SELECT * FROM data-sciencey-things.skylite_travel.flights LIMIT 20"
 
 df = (
      client.query(query_string).result().to_dataframe()
  )
 
 st.write("# Yves TRAVEL APP")
-st.write(df.head())
+st.write(df.head(10))
 
