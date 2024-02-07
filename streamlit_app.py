@@ -47,13 +47,26 @@ df = (
 
 ## TOP SECTION LAYOUT
 
-col1, col2, col3 = st.columns((3,1,1))
+# with st.container():
+#      left_col, right_col = st.columns(2)
+#      with left_col:
+#           st.header("Yves TRAVEL APP")
+#           st.write("###")
+
+#      with right_col:
+#           st.lottie(airplane, height=200, width=200)
+
+
+
+
+col1, col2, col3 = st.columns((1,1,2))
 
 with col1:
-     st.write("# Yves TRAVEL APP") 
+     st.write("## Yves TRAVEL APP") 
 
 with col2:
-     st.lottie(airplane, height=200, width=200)
+     st.lottie(airplane, height=100, width=200)
+
 
 
 st.write("#### Latest data files")
