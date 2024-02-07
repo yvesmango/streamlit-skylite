@@ -52,9 +52,8 @@ col1, col2, col3 = st.columns((3,1,1))
 with col1:
      st.write("# Yves TRAVEL APP") 
 
-with col2:
-     st.write("no lottie")
-     #st.lottie(airplane, height=200, width=200)
+# with col2:
+#      st.lottie(airplane, height=200, width=200)
 
 
 st.write("#### Latest data files")
