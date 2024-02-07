@@ -2,4 +2,5 @@ pandas==1.5.3
 pandas_gbq==0.21.0
 protobuf==4.25.2
 streamlit==1.31.0
-google-cloud-bigquery==
+google-cloud-bigquery==3.17.2
+google-auth==2.27.0
