@@ -6,4 +6,4 @@ streamlit-lottie==0.0.5
 google-cloud-bigquery==3.17.2
 google-auth==2.27.0
 geopandas==0.14.3
-plotly==5.3.1
+plotly==5.22.0
