@@ -49,11 +49,6 @@ def get_current_time():
     return now.strftime("%Y-%m-%d %H:%M:%S")
 
 
-# ## Opening dataframe
-# df = (
-#      client.query(latest_data).result().to_dataframe()
-#  )
-
 # Open dataframe and store it in session state
 @st.cache_data(ttl=600)
 def load_dataframe(query):
@@ -72,7 +67,7 @@ with st.container():
      col1, col2, col3 = st.columns((1,1,2))
 
      with col1:
-          st.write("## Yves TRAVEL APP") 
+          st.write("## Skylite Travel Dashboard") 
 
      with col2:
           st.lottie(airplane, height=100, width=200)    
@@ -84,12 +79,25 @@ with st.container():
 # st.write(df.sort_values(by=['snippet_publishedAt'], ascending=False))
 
 # Display latest data files
-st.write("#### Latest data files")
+st.write("#### Latest data records")
 st.write(st.session_state.df.head().sort_values(by=['snippet_publishedAt'], ascending=False))
 
 # Write a brief "about me" summary
+sla31 = "https://www.youtube.com/@sla31"
 
+st.markdown("""
+## About Me
 
+Welcome to the Skylite Productions Travel Dashboard! This dashboard is a personal side project inspired by [Skylite Productions](%s), a fantastic YouTube channel dedicated to air travel. As an aviation enthusiast and data geek, I've gathered and analyzed the flight data from Skylite's videos to create this interactive experience for fellow travel fans.
+
+Here, you can explore detailed statistics about the flights featured on the channel, such as average flight durations, popular routes, and various aircraft types. You'll also find insights into the busiest airports and geographical patterns of the travels.
+
+As a fan of Skylite Productions, I wanted to offer a deeper look into its amazing travel adventures. Enjoy exploring the data and discovering new insights about the flights and destinations covered on the channel! Click on "summary analytics" in the sidebar to get started.
+
+Happy exploring! ✈️
+""" % sla31)
+
+# The dashboard is packed with interactive charts and maps to bring the data to life, including a point pattern analysis of the origin-destination routes.
 
 
 # Display latest date based on snippet_publishedAt
