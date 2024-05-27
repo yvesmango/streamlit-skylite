@@ -116,7 +116,7 @@ else:
 
 # flight duration histogram
 if 'df' in st.session_state:
-    fig = px.histogram(df, x="flight_minutes", nbins=30, title='Histogram: Flight Duration (minutes)', color="blue")
+    fig = px.histogram(df, x="flight_minutes", nbins=30, title='Histogram: Flight Duration (minutes)', color_discrete_sequence=['royalblue'])
     st.plotly_chart(fig, theme="streamlit")    
 
 
