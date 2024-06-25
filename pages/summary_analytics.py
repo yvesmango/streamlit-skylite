@@ -25,6 +25,33 @@ def convert_coordinates(coord_str):
         return None
 
 
+# Ensure 'geo' is loaded in session state
+if 'geo' in st.session_state:
+    geo_data = st.session_state.geo
+    
+    # Calculate metrics
+    total_distance_km = geo_data['distance_km'].sum()
+    # Find minimum distance that is not zero
+    min_distance_km = geo_data.loc[geo_data['distance_km'] > 0, 'distance_km'].min()
+    max_distance_km = geo_data['distance_km'].max()
+    
+
+    # Round the values to 3 decimal places
+    total_distance_rounded = round(total_distance_km, 3)
+    min_distance_rounded = round(min_distance_km, 3)
+    max_distance_rounded = round(max_distance_km, 3)
+    
+    # Display metrics in columns
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Total Distance Traveled (km)", total_distance_rounded)
+    col2.metric("Minimum Distance Traveled (km)", min_distance_rounded)
+    col3.metric("Maximum Distance Traveled (km)", max_distance_rounded)
+else:
+    st.write("Geo Data (geo) not found in session state.")
+
+
+
+
 # Access the DataFrame from session state
 if 'df' in st.session_state:
     df = st.session_state.df
@@ -33,7 +60,6 @@ if 'df' in st.session_state:
         required_columns = ['coordinates_origin', 'coordinates_destination', 'municipality_origin', 'municipality_destination', 'iso_region_origin', 'iso_region_destination', 'flightDuration']
         if all(column in df.columns for column in required_columns):
             # Do something with df
-            st.write(df.head())
             
             st.write("### Flight history, visualized")
             
@@ -141,8 +167,6 @@ if 'df' in st.session_state:
 
     # Display the plot
     st.plotly_chart(fig, use_container_width=True)
-
-
 
 
 

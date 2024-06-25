@@ -23,8 +23,8 @@ client = bigquery.Client(credentials=credentials)
 
 # # Perform query
 # # Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
 
+@st.cache_data(ttl=600)
 def run_query(query):
      query_job = client.query(query)
      rows_raw = query_job.result()
@@ -33,6 +33,8 @@ def run_query(query):
      return rows
 
 latest_data = "SELECT * EXCEPT (id, snippet_description) FROM data-sciencey-things.skylite_travel.flights ORDER BY snippet_publishedAt DESC"
+
+geo_data = "SELECT * EXCEPT (id, snippet_description) FROM data-sciencey-things.skylite_travel.skylite_flights ORDER BY snippet_publishedAt DESC"
 
 
 def load_lottiefile(filepath: str):
@@ -58,6 +60,8 @@ def load_dataframe(query):
 
 # Store dataframe in session state
 st.session_state.df = load_dataframe(latest_data)
+
+st.session_state.geo = load_dataframe(geo_data)
 
 
 ## TOP SECTION LAYOUT
