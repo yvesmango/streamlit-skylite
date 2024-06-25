@@ -140,13 +140,6 @@ else:
 
 
 
-# flight duration histogram
-if 'df' in st.session_state:
-    fig = px.histogram(df, x="flight_minutes", nbins=30, title='Histogram: Flight Duration (minutes)', color_discrete_sequence=['royalblue'])
-    st.plotly_chart(fig, theme="streamlit")    
-
-
-
 # Top flown airlines
 if 'df' in st.session_state:
 
@@ -169,9 +162,43 @@ if 'df' in st.session_state:
     st.plotly_chart(fig, use_container_width=True)
 
 
+# flight duration histogram
+if 'df' in st.session_state:
+    fig = px.histogram(df, x="flight_minutes", nbins=30, title='Histogram: Flight Duration (minutes)', color_discrete_sequence=['royalblue'])
+    st.plotly_chart(fig, theme="streamlit")    
 
 
 
+if 'geo' in st.session_state:
+    geo_data = st.session_state.geo
+    
+    # Group by 'airline' and calculate average distance traveled
+    grouped_distance = geo_data.groupby('airline')['distance_km'].sum().reset_index()
+    
+    # Round the average distances to 3 decimal places
+    grouped_distance['distance_km'] = grouped_distance['distance_km'].round(3)
+    
+    # Sort by average distance (optional)
+    grouped_distance = grouped_distance.sort_values(by='distance_km', ascending=False)
+    
+    # Select top 10 airlines by average distance
+    top_10_distance = grouped_distance.head(10)
+
+    custom_palette = px.colors.qualitative.Set2
+    
+    # Create the horizontal bar plot using Plotly Express
+    fig = px.bar(top_10_distance, x='distance_km', y='airline', orientation='h', 
+                 title='Top 10 Airlines by Total Distance Traveled',
+                 labels={'distance_km': 'Total Distance (km)', 'airline': 'Airline'},
+                 color='airline', color_discrete_sequence=custom_palette)
+    
+    # Update layout for better appearance
+    fig.update_layout(xaxis_title='Total Distance (km)', yaxis_title='Airline', showlegend=False)
+    
+    # Display the plot
+    st.plotly_chart(fig, use_container_width=True)
+else:
+    st.write("Geo Data (geo) not found in session state.")
 
 
 
