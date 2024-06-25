@@ -176,7 +176,7 @@ if 'geo' in st.session_state:
     grouped_distance = geo_data.groupby('airline')['distance_km'].sum().reset_index()
     
     # Round the average distances to 3 decimal places
-    grouped_distance['distance_km'] = grouped_distance['distance_km'].round(3)
+    grouped_distance['distance_km'] = grouped_distance['distance_km']
     
     # Sort by average distance (optional)
     grouped_distance = grouped_distance.sort_values(by='distance_km', ascending=False)
@@ -192,6 +192,8 @@ if 'geo' in st.session_state:
                  labels={'distance_km': 'Total Distance (km)', 'airline': 'Airline'},
                  color='airline', color_discrete_sequence=custom_palette)
     
+    fig.update_traces(hovertemplate='Airline: %{y}<br>Total Distance (km): %{x:.3f}')
+
     # Update layout for better appearance
     fig.update_layout(xaxis_title='Total Distance (km)', yaxis_title='Airline', showlegend=False)
     
