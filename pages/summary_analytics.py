@@ -202,7 +202,3 @@ if 'geo' in st.session_state:
 else:
     st.write("Geo Data (geo) not found in session state.")
 
-
-
-
-
