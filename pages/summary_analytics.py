@@ -130,8 +130,8 @@ else:
 
 
 # Count of Flights by Region Pair
-if 'df' in st.session_state:
-    df = st.session_state.df
+if 'geo' in st.session_state:
+    df = st.session_state.geo
     region_pairs = df.groupby(['origin', 'destination']).size().reset_index(name='count').sort_values(by='count', ascending=False).head(10).reset_index(drop=True)
     st.write("### Top 10 Flight Origin/Destination Pairs")
     st.table(region_pairs)
@@ -141,7 +141,7 @@ else:
 
 
 # Top flown airlines
-if 'df' in st.session_state:
+if 'geo' in st.session_state:
 
     # Calculate the top 10 airlines
     top_airlines = df['airline'].value_counts().nlargest(10)
@@ -163,7 +163,7 @@ if 'df' in st.session_state:
 
 
 # flight duration histogram
-if 'df' in st.session_state:
+if 'geo' in st.session_state:
     fig = px.histogram(df, x="flight_minutes", nbins=30, title='Histogram: Flight Duration (minutes)', color_discrete_sequence=['royalblue'])
     st.plotly_chart(fig, theme="streamlit")    
 
@@ -201,4 +201,8 @@ if 'geo' in st.session_state:
     st.plotly_chart(fig, use_container_width=True)
 else:
     st.write("Geo Data (geo) not found in session state.")
+
+
+
+# Top flown equipment
 

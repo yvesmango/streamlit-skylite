@@ -84,7 +84,7 @@ with st.container():
 
 # Display latest data files
 st.write("#### Latest data records")
-st.write(st.session_state.df.head().sort_values(by=['snippet_publishedAt'], ascending=False))
+st.write(st.session_state.geo.sort_values(by=['snippet_publishedAt'], ascending=False).head())
 
 # Write a brief "about me" summary
 sla31 = "https://www.youtube.com/@sla31"
@@ -105,5 +105,5 @@ Happy exploring! ✈️
 
 
 # Display latest date based on snippet_publishedAt
-latest_date = st.session_state.df['snippet_publishedAt'].iloc[0].strftime('%Y-%m-%d')
+latest_date = st.session_state.geo['snippet_publishedAt'].iloc[0].strftime('%Y-%m-%d')
 st.write(f"*latest data update: {latest_date}*")
