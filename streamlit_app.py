@@ -32,7 +32,7 @@ def run_query(query):
      rows = [dict(row) for row in rows_raw]
      return rows
 
-latest_data = "SELECT * EXCEPT (id, snippet_description) FROM data-sciencey-things.skylite_travel.flights3 ORDER BY snippet_publishedAt DESC"
+latest_data = "SELECT * EXCEPT (id, snippet_description) FROM data-sciencey-things.skylite_travel.flights ORDER BY snippet_publishedAt DESC"
 
 geo_data = "SELECT * EXCEPT (id, snippet_description) FROM data-sciencey-things.skylite_travel.skylite_flights ORDER BY snippet_publishedAt DESC"
 
